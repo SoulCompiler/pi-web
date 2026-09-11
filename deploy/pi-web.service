@@ -1,0 +1,16 @@
+[Unit]
+Description=Pi Web (custom-main, port 16666)
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/workspace/pi-web
+Environment=NODE_ENV=production
+Environment=PATH=/usr/local/bin:/usr/bin:/bin
+ExecStart=/usr/bin/node bin/pi-web.js --port 16666 --hostname 127.0.0.1 --no-open
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+
+[Install]
+WantedBy=default.target
